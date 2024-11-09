@@ -12,6 +12,30 @@ export const metadata: Metadata = {
     "Welcome to my portfolio website! I'm a full stack developer based in Portland, OR.",
 };
 
+function Head() {
+  return (
+    <head>
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="/icons/apple-touch-icon.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/icons/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/icons/favicon-16x16.png"
+      />
+      <link rel="manifest" href="/site.webmanifest" />
+    </head>
+  );
+}
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -19,6 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={redHatMono.className}>
+      <Head />
       <body className={`antialiased`}>{children}</body>
     </html>
   );

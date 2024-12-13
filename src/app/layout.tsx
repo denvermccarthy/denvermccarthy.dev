@@ -10,6 +10,19 @@ export const metadata: Metadata = {
   title: "Home - Denver McCarthy",
   description:
     "Welcome to my portfolio website! I'm a full stack developer based in Portland, OR.",
+  icons: {
+    apple: [
+      {
+        url: "/icons/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+    icon: [
+      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+  },
 };
 
 function Head() {

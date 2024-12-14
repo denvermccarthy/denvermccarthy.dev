@@ -1,53 +1,36 @@
 import React, { PropsWithChildren } from "react";
-import Footer from "@/components/footer";
+import Footer from "@/components/ui/footer";
 
 function HomePageText({ children }: PropsWithChildren) {
   return <p className="py-2 my-2">{children}</p>;
 }
 
-function ExperienceSection() {
-  const experiences = [
-    {
-      title: "Software Engineer",
-      company: "Interaptiv Media",
-      period: "October 2024 — Present",
-      description:
-        "Currently, I'm leading the architecture and development of a SaaS product on the HubSpot Marketplace, including implementing a secure OAuth flow with token storage and selecting a scalable technology stack to align with business goals.",
-      technologies: ["TypeScript", "React", "Node.js", "Express", "HubSpot"],
-      link: "https://www.interaptiv.com",
-    },
-    {
-      title: "Software Engineer",
-      company: "Pop Art",
-      period: "October 2022 — February 2024",
-      description:
-        "Developed a reusable rendering engine for dynamic form components, accelerating custom client form development by 3-5x. Upgraded runtimes and resolved package deprecations across 10+ backend services. Refactored critical analytics service, reducing time-to-load for large datasets from 10s to under 1.5s. Led React Native application upgrades across 10 minor versions.",
-      technologies: ["React", "React Native", "Node.js", "AWS", "TypeScript"],
-      link: "https://bamsales.io",
-    },
-    // Add more experiences as needed
-  ];
-
+function Header() {
   return (
-    <section
-      id="experience"
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-      aria-label="Work experience"
-    >
-      <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen px-6 py-5 backdrop-blur md:-mx-12 md:px-12 ">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-900 dark:text-neutral-200">
-          Experience
-        </h2>
-      </div>
-      <div>
-        <ol className="group/list">
-          {experiences.map((exp, index) => (
-            <ExperienceCard key={index} {...exp} />
-          ))}
-        </ol>
-      </div>
-    </section>
+    <header className="lg:flex lg:max-h-screen max-w-md lg:flex-col lg:justify-between lg:py-24">
+      <h1 className="text-6xl lg:my-2">Denver McCarthy</h1>
+      <h2 className="text-xl my-2 py-1 lg:my-0">Full Stack Engineer</h2>
+      <HomePageText>
+        I&apos;m passionate about designing and building robust, maintainable,
+        and performant software solutions. I specialize in the Javascript
+        ecosystem, leveraging tools like react and node.js to develop full-stack
+        applications for the web and mobile devices.
+      </HomePageText>
+      <HomePageText>
+        This project is in active development, check back soon for more
+        features!
+      </HomePageText>
+    </header>
   );
+}
+
+interface ExperienceCardProps {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  technologies: string[];
+  link: string;
 }
 
 function ExperienceCard({
@@ -57,7 +40,7 @@ function ExperienceCard({
   description,
   technologies,
   link,
-}: any) {
+}: ExperienceCardProps) {
   return (
     <li className="mb-12">
       <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
@@ -90,9 +73,9 @@ function ExperienceCard({
             {description}
           </p>
           <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
-            {technologies.map((tech: string) => (
+            {technologies.map((tech) => (
               <li key={tech} className="mr-1.5 mt-2">
-                <div className="flex items-center rounded-full bg-lime-400/10 dark:bg-lime-400/20 px-3 py-1 text-xs font-medium leading-5 text-lime-500 dark:text-lime-300 transition-colors duration-200 hover:bg-lime-300 hover:text-neutral-900 dark:hover:bg-lime-300 dark:hover:text-neutral-900">
+                <div className="flex items-center rounded-full bg-lime-200/75 dark:bg-lime-400/20 px-3 py-1 text-xs font-medium leading-5 text-lime-900 dark:text-lime-300 transition-colors duration-200 hover:bg-lime-300 hover:text-neutral-900 dark:hover:bg-lime-300 dark:hover:text-neutral-900">
                   {tech}
                 </div>
               </li>
@@ -110,29 +93,59 @@ function ExperienceCard({
   );
 }
 
+function ExperienceSection() {
+  const experiences: ExperienceCardProps[] = [
+    {
+      title: "Software Engineer",
+      company: "Interaptiv Media",
+      period: "October 2024 — Present",
+      description:
+        "Currently, I'm leading the architecture and development of a SaaS product on the HubSpot Marketplace, including implementing a secure OAuth flow with token storage and selecting a scalable technology stack to align with business goals.",
+      technologies: ["TypeScript", "React", "Node.js", "Express", "HubSpot"],
+      link: "https://www.interaptiv.com",
+    },
+    {
+      title: "Software Engineer",
+      company: "Pop Art",
+      period: "October 2022 — February 2024",
+      description:
+        "Developed a reusable rendering engine for dynamic form components, accelerating custom client form development by 3-5x. Upgraded runtimes and resolved package deprecations across 10+ backend services. Refactored critical analytics service, reducing time-to-load for large datasets from 10s to under 1.5s. Led React Native application upgrades across 10 minor versions.",
+      technologies: ["React", "React Native", "Node.js", "AWS", "TypeScript"],
+      link: "https://bamsales.io",
+    },
+  ];
+
+  return (
+    <section
+      id="experience"
+      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+      aria-label="Work experience"
+    >
+      <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen px-6 py-5 backdrop-blur md:-mx-12 md:px-12 ">
+        <h2 className="text-sm font-bold uppercase tracking-widest text-neutral-900 dark:text-neutral-200">
+          Experience
+        </h2>
+      </div>
+      <div>
+        <ol className="group/list">
+          {experiences.map((exp, index) => (
+            <ExperienceCard key={index} {...exp} />
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   return (
-    <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
-      <div className="lg:flex lg:flex-grow lg:justify-between lg:gap-4 ">
-        <header className="lg:flex lg:max-h-screen max-w-md lg:flex-col lg:justify-between lg:py-24">
-          <h1 className="text-6xl lg:my-2">Denver McCarthy</h1>
-          <h2 className="text-xl my-2 py-1 lg:my-0">Full Stack Engineer</h2>
-          <HomePageText>
-            I&apos;m passionate about designing and building robust,
-            maintainable, and performant software solutions. I specialize in the
-            Javascript ecosystem, leveraging tools like react and node.js to
-            develop full-stack applications for the web and mobile devices.
-          </HomePageText>
-          <HomePageText>
-            This project is in active development, check back soon for more
-            features!
-          </HomePageText>
-        </header>
+    <div className="mx-auto min-h-[150vh] max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+      <div className="lg:flex lg:flex-grow lg:justify-between lg:gap-4">
+        <Header />
       </div>
       <div className="pt-12 lg:pt-24">
         <ExperienceSection />
       </div>
-
       <Footer />
     </div>
   );

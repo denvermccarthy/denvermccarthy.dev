@@ -1,9 +1,9 @@
 "use client";
-import React, { PropsWithChildren, useState } from "react";
+import React, { PropsWithChildren } from "react";
 import Footer from "@/components/ui/footer";
 import ExperienceSection from "./work/ExperienceSection";
-import ProjectSection from "./work/ProjectSection";
-import AboutSection from "./about/AboutSection";
+// import ProjectSection from "./work/ProjectSection";
+// import AboutSection from "./about/AboutSection";
 
 function HomePageText({ children }: PropsWithChildren) {
   return <p className="my-2 py-2">{children}</p>;

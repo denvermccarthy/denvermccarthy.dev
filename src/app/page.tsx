@@ -36,7 +36,7 @@ function HeroImage() {
 
 function Hero() {
   return (
-    <div className="min-h-[70vh] lg:flex lg:flex-col  lg:justify-between lg:py-12 xl:py-48 ">
+    <div className="mb-16 md:mb-36 lg:flex lg:flex-col  lg:justify-between lg:py-12 xl:py-48 lg:mb-0">
       <HeroText />
       <HeroImage />
     </div>

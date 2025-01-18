@@ -6,17 +6,17 @@ import ProjectSection from "./work/ProjectSection";
 import AboutSection from "./about/AboutSection";
 
 function HomePageText({ children }: PropsWithChildren) {
-  return <p className="py-2 my-2">{children}</p>;
+  return <p className="my-2 py-2">{children}</p>;
 }
 
 function HeroText() {
   return (
-    <div className="">
+    <div className="md:w-3/5 lg:w-1/2 mt-12 ">
       <header className="">
-        <h1 className="text-6xl lg:my-2">Denver McCarthy</h1>
-        <h2 className="text-xl my-2 py-1 lg:my-0">Full Stack Engineer</h2>
+        <h1 className="text-5xl sm:text-6xl my-2">Denver McCarthy</h1>
+        <h2 className="text-lg sm:text-xl my-0">Full Stack Engineer</h2>
         <HomePageText>
-          I&apos;m passionate about designing and building robust, maintainable,
+          I&apos;m interested in designing and building robust, maintainable,
           and performant software solutions. I specialize in the Javascript
           ecosystem, leveraging tools like react and node.js to develop
           full-stack applications for the web and mobile devices.
@@ -31,81 +31,28 @@ function HeroText() {
 }
 
 function HeroImage() {
-  return <div className=""></div>;
+  return <div className="lg:w-1/2"></div>;
 }
 
 function Hero() {
   return (
-    <div className="h-screen max-w-lg">
+    <div className="min-h-[70vh] lg:flex lg:flex-col  lg:justify-between lg:py-12 xl:py-48 ">
       <HeroText />
       <HeroImage />
     </div>
   );
 }
 
-function CloseIcon({
-  width,
-  height,
-}: {
-  width: number | string;
-  height: number | string;
-}) {
-  return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 15 15"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z"
-        fill="currentColor"
-        fillRule="evenodd"
-        clipRule="evenodd"
-      ></path>
-    </svg>
-  );
-}
-
-function HamburgerMenuIcon({
-  width,
-  height,
-}: {
-  width: number | string;
-  height: number | string;
-}) {
-  return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 15 15"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H1.5C1.22386 12 1 11.7761 1 11.5Z"
-        fill="currentColor"
-        fillRule="evenodd"
-        clipRule="evenodd"
-      ></path>
-    </svg>
-  );
-}
-
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
-    <div>
-      <div className="h-20 flex justify-end items-center px-6 ">
-        {!isMenuOpen && <HamburgerMenuIcon width={44} height={44} />}
-        {isMenuOpen && <CloseIcon width={44} height={44} />}
-      </div>
-      <div className="mx-6 my-2">
-        <Hero />
-        <ExperienceSection />
-        {/* <ProjectSection /> */}
-        {/* <AboutSection /> */}
+    <div className="">
+      <div className="w-10/12 px-6 lg:w-screen lg:flex lg:justify-center">
+        <div className="lg:max-w-7xl">
+          <Hero />
+          <ExperienceSection />
+          {/* <ProjectSection /> */}
+          {/* <AboutSection /> */}
+        </div>
       </div>
       <Footer />
     </div>

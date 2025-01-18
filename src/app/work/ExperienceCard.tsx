@@ -36,7 +36,7 @@ function ExperienceCard({
             ))}
           </ul>
         </div>
-        <div className="hidden md:block">
+        <div className="hidden md:block md:col-start-8">
           <TimePeriod period={period} company={company} />
         </div>
       </div>

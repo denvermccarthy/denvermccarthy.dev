@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { Red_Hat_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const redHatMono = Red_Hat_Mono({
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Home - Denver McCarthy",
@@ -55,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={redHatMono.className}>
+    <html lang="en" className={inter.className}>
       <Head />
       <body className={`antialiased`}>{children}</body>
     </html>

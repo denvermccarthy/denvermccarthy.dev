@@ -43,18 +43,44 @@ function Hero() {
   );
 }
 
+function Layout({ children }: PropsWithChildren) {
+  return (
+    <div className="w-screen flex flex-col items-center">
+      <div className="w-10/12 px-6 ">
+        <div className="lg:max-w-7xl">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function Nav() {
+  const NAV_ITEMS = ["experience", "projects", "bio", "contact", "writing"];
+
+  return (
+    <div className="h-screen w-full flex">
+      <div className="h-1/6"></div>
+      <nav>
+        <div className="h-1/6"></div>
+        <ul>
+          {NAV_ITEMS.map((name) => (
+            <NavItem key={name} name={name} />
+          ))}
+        </ul>
+      </nav>
+    </div>
+  );
+}
+
+type NavItemProps = { name: string };
+
+function NavItem({ name }: NavItemProps) {
+  return <li className="py-4 text-2xl font-medium">{name.toUpperCase()}</li>;
+}
+
 export default function Home() {
   return (
-    <div className="">
-      <div className="w-10/12 px-6 lg:w-screen lg:flex lg:justify-center">
-        <div className="lg:max-w-7xl">
-          <Hero />
-          <ExperienceSection />
-          {/* <ProjectSection /> */}
-          {/* <AboutSection /> */}
-        </div>
-      </div>
-      <Footer />
-    </div>
+    <Layout>
+      <Nav />
+    </Layout>
   );
 }

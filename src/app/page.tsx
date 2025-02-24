@@ -74,7 +74,20 @@ function Nav() {
 type NavItemProps = { name: string };
 
 function NavItem({ name }: NavItemProps) {
-  return <li className="py-4 text-2xl font-medium">{name.toUpperCase()}</li>;
+  return (
+    <li className="py-4 text-2xl font-medium">
+      <a
+        href={`#${name}`}
+        className="relative text-gray-600 hover:text-black transition-all duration-500 group motion-reduce:transition-none"
+      >
+        {name.toUpperCase()}
+        <span
+          className="absolute left-0 bottom-[-6px] w-full h-0 bg-black opacity-0 transition-all duration-500 ease-in-out group-hover:h-[3px] group-hover:opacity-60 motion-reduce:transition-none"
+          aria-hidden="true"
+        ></span>
+      </a>
+    </li>
+  );
 }
 
 export default function Home() {

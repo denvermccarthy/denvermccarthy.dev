@@ -1,6 +1,5 @@
 "use client";
 import React, { PropsWithChildren } from "react";
-import Footer from "@/components/ui/footer";
 import ExperienceSection from "./work/ExperienceSection";
 // import ProjectSection from "./work/ProjectSection";
 // import AboutSection from "./about/AboutSection";
@@ -46,18 +45,20 @@ function Hero() {
 function Layout({ children }: PropsWithChildren) {
   return (
     <div className="w-screen flex flex-col items-center">
-      <div className="w-10/12 px-6 ">
-        <div className="lg:max-w-7xl">{children}</div>
+      <div className="w-10/12 px-6 lg:grid lg:grid-cols-4 lg:gap-12">
+        <Nav />
+
+        {children}
       </div>
     </div>
   );
 }
 
 function Nav() {
-  const NAV_ITEMS = ["experience", "projects", "bio", "contact", "writing"];
+  const NAV_ITEMS = ["bio", "experience", "projects", "contact", "writing"];
 
   return (
-    <div className="h-screen w-full flex">
+    <div className="h-screen w-full flex lg:col-span-1 lg:fixed">
       <div className="h-1/6"></div>
       <nav>
         <div className="h-1/6"></div>
@@ -71,6 +72,7 @@ function Nav() {
   );
 }
 
+/* TODO: Make this a layout component, figure out a way to scroll */
 type NavItemProps = { name: string };
 
 function NavItem({ name }: NavItemProps) {
@@ -78,11 +80,12 @@ function NavItem({ name }: NavItemProps) {
     <li className="py-4 text-2xl font-medium">
       <a
         href={`#${name}`}
-        className="relative text-gray-600 hover:text-black transition-all duration-500 group motion-reduce:transition-none"
+        className="relative hover:font-semibold transition-all duration-500 group motion-reduce:transition-none"
+        aria-label={`Navigate to ${name}`}
       >
         {name.toUpperCase()}
         <span
-          className="absolute left-0 bottom-[-6px] w-full h-0 bg-black opacity-0 transition-all duration-500 ease-in-out group-hover:h-[3px] group-hover:opacity-60 motion-reduce:transition-none"
+          className="absolute left-0 bottom-[-6px] w-full h-0 bg-[var(--foreground)] opacity-0 transition-all duration-500 ease-in-out group-hover:h-[3px] group-hover:opacity-100 motion-reduce:transition-none"
           aria-hidden="true"
         ></span>
       </a>
@@ -93,7 +96,10 @@ function NavItem({ name }: NavItemProps) {
 export default function Home() {
   return (
     <Layout>
-      <Nav />
+      <div className="lg:col-start-2 lg:col-span-3 ">
+        <Hero />
+        <ExperienceSection />
+      </div>
     </Layout>
   );
 }

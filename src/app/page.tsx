@@ -1,8 +1,8 @@
 "use client";
 import React, { PropsWithChildren } from "react";
 import ExperienceSection from "./work/ExperienceSection";
-// import ProjectSection from "./work/ProjectSection";
-// import AboutSection from "./about/AboutSection";
+import { Link, Element } from "react-scroll";
+import { useInViewHashUpdater } from "@/hooks/useInViewHashUpdater";
 
 function HomePageText({ children }: PropsWithChildren) {
   return <p className="my-2 py-2">{children}</p>;
@@ -10,7 +10,7 @@ function HomePageText({ children }: PropsWithChildren) {
 
 function HeroText() {
   return (
-    <div className="md:w-3/5 lg:w-1/2 mt-12 ">
+    <div className="lg:w-1/2 p-6">
       <header className="">
         <h1 className="text-5xl sm:text-6xl my-2">Denver McCarthy</h1>
         <h2 className="text-lg sm:text-xl my-0">Full Stack Engineer</h2>
@@ -20,33 +20,35 @@ function HeroText() {
           ecosystem, leveraging tools like react and node.js to develop
           full-stack applications for the web and mobile devices.
         </HomePageText>
-        <HomePageText>
-          This project is in active development, check back soon for more
-          features!
-        </HomePageText>
       </header>
     </div>
   );
 }
 
-function HeroImage() {
-  return <div className="lg:w-1/2"></div>;
-}
-
 function Hero() {
   return (
-    <div className="mb-16 md:mb-36 lg:flex lg:flex-col  lg:justify-between lg:py-12 xl:py-48 lg:mb-0">
+    <div className="min-h-[80svh] flex justify-center items-center">
       <HeroText />
-      <HeroImage />
     </div>
   );
 }
 
-function Layout({ children }: PropsWithChildren) {
+function Layout({
+  children,
+  activeSection,
+}: PropsWithChildren<{ activeSection: string }>) {
+  const SECTIONS = [
+    "bio",
+    "experience",
+    // "projects",
+    // "writing",
+    //  "contact"
+  ];
+
   return (
     <div className="w-screen flex flex-col items-center">
-      <div className="w-10/12 px-6 lg:grid lg:grid-cols-4 lg:gap-12">
-        <Nav />
+      <div className="w-10/12 px-6 md:grid md:grid-cols-4 md:gap-12">
+        <Nav sections={SECTIONS} activeSection={activeSection} />
 
         {children}
       </div>
@@ -54,17 +56,19 @@ function Layout({ children }: PropsWithChildren) {
   );
 }
 
-function Nav() {
-  const NAV_ITEMS = ["bio", "experience", "projects", "contact", "writing"];
-
+function Nav({
+  sections,
+  activeSection,
+}: {
+  sections: string[];
+  activeSection: string;
+}) {
   return (
-    <div className="h-screen w-full flex lg:col-span-1 lg:fixed">
-      <div className="h-1/6"></div>
+    <div className="hidden py-24 w-full md:flex justify-center md:justify-normal lg:col-span-1 ">
       <nav>
-        <div className="h-1/6"></div>
-        <ul>
-          {NAV_ITEMS.map((name) => (
-            <NavItem key={name} name={name} />
+        <ul className="md:sticky md:top-[33vh]">
+          {sections.map((name) => (
+            <NavItem key={name} name={name} isActive={activeSection === name} />
           ))}
         </ul>
       </nav>
@@ -73,33 +77,74 @@ function Nav() {
 }
 
 /* TODO: Make this a layout component, figure out a way to scroll */
-type NavItemProps = { name: string };
+type NavItemProps = { name: string; isActive: boolean };
 
-function NavItem({ name }: NavItemProps) {
+function NavItem({ name, isActive }: NavItemProps) {
   return (
     <li className="py-4 text-2xl font-medium">
-      <a
-        href={`#${name}`}
-        className="relative hover:font-semibold transition-all duration-500 group motion-reduce:transition-none"
+      <Link
+        to={name}
+        smooth
+        offset={-125}
+        duration={750}
+        className={`relative hover:font-semibold transition-all duration-500 group motion-reduce:transition-none ${
+          isActive ? "font-extrabold" : ""
+        }`}
         aria-label={`Navigate to ${name}`}
       >
-        {name.toUpperCase()}
+        {name}
         <span
           className="absolute left-0 bottom-[-6px] w-full h-0 bg-[var(--foreground)] opacity-0 transition-all duration-500 ease-in-out group-hover:h-[3px] group-hover:opacity-100 motion-reduce:transition-none"
           aria-hidden="true"
         ></span>
-      </a>
+      </Link>
     </li>
   );
 }
 
-export default function Home() {
+function Section({
+  name,
+  children,
+  setActiveSection,
+}: PropsWithChildren<{
+  name: string;
+  setActiveSection: (name: string) => void;
+}>) {
+  const { ref } = useInViewHashUpdater({
+    id: name,
+    onUpdate: setActiveSection,
+  });
   return (
-    <Layout>
-      <div className="lg:col-start-2 lg:col-span-3 ">
+    <Element name={name}>
+      <section id={name} className="min-h-svh" ref={ref}>
+        <h2 className="text-2xl font-semibold pb-8">{name}</h2>
+        {children}
+      </section>
+    </Element>
+  );
+}
+
+export default function Home() {
+  const [activeSection, setActiveSection] = React.useState("bio");
+
+  return (
+    <>
+      <Element name="bio">
         <Hero />
-        <ExperienceSection />
-      </div>
-    </Layout>
+      </Element>
+      <Layout activeSection={activeSection}>
+        <div
+          className="md:col-start-2 md:col-span-3 *:mb-16"
+          id="scroll-container"
+        >
+          <Section name="experience" setActiveSection={setActiveSection}>
+            <ExperienceSection />
+          </Section>
+          {/* <Section name="projects" setActiveSection={setActiveSection} /> */}
+          {/* <Section name="writing" setActiveSection={setActiveSection} /> */}
+          {/* <Section name="contact" setActiveSection={setActiveSection}></Section> */}
+        </div>
+      </Layout>{" "}
+    </>
   );
 }

@@ -19,8 +19,8 @@ function ExperienceCard({
 }: ExperienceCardProps) {
   return (
     <li className="mb-12">
-      <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-        <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-neutral-100 dark:lg:group-hover:bg-neutral-800/50 lg:group-hover:shadow-lg"></div>
+      <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 ">
+        <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block"></div>
 
         <div className="z-10 sm:col-span-6">
           <JobTitle title={title} company={company} link={link} />
@@ -79,13 +79,13 @@ const JobTitle = ({
   <h3 className="font-medium leading-snug text-neutral-900 dark:text-neutral-200">
     <div>
       <a
-        className="inline-flex items-baseline font-medium leading-tight text-neutral-900 dark:text-neutral-200 hover:text-lime-600 dark:hover:text-lime-300 focus-visible:text-lime-600 dark:focus-visible:text-lime-300 group/link text-base transition-colors duration-200"
+        className="inline-flex items-baseline font-medium leading-tight text-neutral-900 dark:text-neutral-200 "
         href={link}
         target="_blank"
         rel="noreferrer noopener"
         aria-label={`${title} at ${company} (opens in a new tab)`}
       >
-        <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+        <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block z-10"></span>
         <span>
           {title} · <span className="inline-block">{company}</span>
         </span>

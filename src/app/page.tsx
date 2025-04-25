@@ -12,9 +12,9 @@ function HomePageText({ children }: PropsWithChildren) {
 
 function HeroText() {
   return (
-    <div className="lg:w-2/3 lg:max-w-2xl p-6">
+    <div className="lg:w-2/3 flex flex-col justify-center">
       <header className="">
-        <h1 className=" text-5xl sm:text-6xl my-2">Denver McCarthy</h1>
+        <h1 className="text-5xl sm:text-6xl my-2">Denver McCarthy</h1>
         <h2 className="text-lg sm:text-xl my-0">Full Stack Engineer</h2>
         <HomePageText>
           I&apos;m interested in designing and building robust, maintainable,
@@ -29,7 +29,7 @@ function HeroText() {
 
 function Hero() {
   return (
-    <div className="min-h-[80svh] w-full flex justify-center items-center gap-6">
+    <div className="mx-auto mt-24 flex gap-6 w-full max-w-screen-lg px-12 xl:max-w-screen-xl">
       <HeroText />
       <div className="hidden lg:max-w-xs lg:block">
         <Image
@@ -57,12 +57,10 @@ function Layout({
   ];
 
   return (
-    <div className="w-screen flex flex-col items-center">
-      <div className="w-10/12 px-6 md:grid md:grid-cols-4 md:gap-12">
-        <Nav sections={SECTIONS} activeSection={activeSection} />
+    <div className="mx-auto w-full max-w-screen-lg px-12 xl:max-w-screen-xl">
+      {/* <Nav sections={SECTIONS} activeSection={activeSection} /> */}
 
-        {children}
-      </div>
+      {children}
     </div>
   );
 }
@@ -105,7 +103,7 @@ function NavItem({ name, isActive }: NavItemProps) {
       >
         {name}
         <span
-          className="absolute left-0 bottom-[-6px] w-full h-0 bg-[var(--foreground)] opacity-0 transition-all duration-500 ease-in-out group-hover:h-[3px] group-hover:opacity-100 motion-reduce:transition-none"
+          className="absolute left-0 bottom-[-6px] w-full h-0 bg-[var(--foreground)] opacity-0 transition-all duration-500 ease-in-out group-hover:h-[3px] group-hover:opacity-100 motion-reduce:transition-none "
           aria-hidden="true"
         ></span>
       </Link>
@@ -127,7 +125,7 @@ function Section({
   });
   return (
     <Element name={name}>
-      <section id={name} className="min-h-svh" ref={ref}>
+      <section id={name} className="min-h-svh mt-36" ref={ref}>
         <h2 className="text-2xl font-semibold pb-8">{name}</h2>
         {children}
       </section>

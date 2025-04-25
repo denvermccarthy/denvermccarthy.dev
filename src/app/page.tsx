@@ -1,7 +1,7 @@
 "use client";
 import React, { PropsWithChildren } from "react";
 import ExperienceSection from "./work/ExperienceSection";
-import { Link, Element } from "react-scroll";
+import { Element } from "react-scroll";
 import { useInViewHashUpdater } from "@/hooks/useInViewHashUpdater";
 import Image from "next/image";
 import profilePic from "../../public/me.png";
@@ -44,70 +44,11 @@ function Hero() {
   );
 }
 
-function Layout({
-  children,
-  activeSection,
-}: PropsWithChildren<{ activeSection: string }>) {
-  const SECTIONS = [
-    "bio",
-    "experience",
-    // "projects",
-    // "writing",
-    //  "contact"
-  ];
-
+function Layout({ children }: PropsWithChildren<{ activeSection: string }>) {
   return (
     <div className="mx-auto w-full max-w-screen-lg px-12 xl:max-w-screen-xl">
-      {/* <Nav sections={SECTIONS} activeSection={activeSection} /> */}
-
       {children}
     </div>
-  );
-}
-
-function Nav({
-  sections,
-  activeSection,
-}: {
-  sections: string[];
-  activeSection: string;
-}) {
-  return (
-    <div className="hidden py-24 w-full xl:flex justify-center md:justify-normal lg:col-span-1 ">
-      <nav>
-        <ul className="md:sticky md:top-[33vh]">
-          {sections.map((name) => (
-            <NavItem key={name} name={name} isActive={activeSection === name} />
-          ))}
-        </ul>
-      </nav>
-    </div>
-  );
-}
-
-/* TODO: Make this a layout component, figure out a way to scroll */
-type NavItemProps = { name: string; isActive: boolean };
-
-function NavItem({ name, isActive }: NavItemProps) {
-  return (
-    <li className="py-4 text-2xl font-medium">
-      <Link
-        to={name}
-        smooth
-        offset={-125}
-        duration={750}
-        className={`relative hover:font-semibold transition-all duration-500 group motion-reduce:transition-none ${
-          isActive ? "font-extrabold" : ""
-        }`}
-        aria-label={`Navigate to ${name}`}
-      >
-        {name}
-        <span
-          className="absolute left-0 bottom-[-6px] w-full h-0 bg-[var(--foreground)] opacity-0 transition-all duration-500 ease-in-out group-hover:h-[3px] group-hover:opacity-100 motion-reduce:transition-none "
-          aria-hidden="true"
-        ></span>
-      </Link>
-    </li>
   );
 }
 

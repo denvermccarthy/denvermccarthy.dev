@@ -7,15 +7,15 @@ interface WorkExperience {
   link: string;
 }
 export const WORK_EXPERIENCES: WorkExperience[] = [
-  {
-    title: "Software Engineer",
-    company: "Interaptiv Media",
-    period: "October 2024 — Present",
-    description:
-      "Currently, I'm leading the architecture and development of a SaaS product on the HubSpot Marketplace, including implementing a secure OAuth flow with token storage and selecting a scalable technology stack to align with business goals.",
-    technologies: ["TypeScript", "React", "Node.js", "Express", "HubSpot"],
-    link: "https://www.interaptiv.com",
-  },
+  // {
+  //   title: "Software Engineer",
+  //   company: "Interaptiv Media",
+  //   period: "October 2024 — Present",
+  //   description:
+  //     "Currently, I'm leading the architecture and development of a SaaS product on the HubSpot Marketplace, including implementing a secure OAuth flow with token storage and selecting a scalable technology stack to align with business goals.",
+  //   technologies: ["TypeScript", "React", "Node.js", "Express", "HubSpot"],
+  //   link: "https://www.interaptiv.com",
+  // },
   {
     title: "Software Engineer",
     company: "Pop Art",

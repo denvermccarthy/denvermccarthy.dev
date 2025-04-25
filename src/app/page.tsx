@@ -3,6 +3,8 @@ import React, { PropsWithChildren } from "react";
 import ExperienceSection from "./work/ExperienceSection";
 import { Link, Element } from "react-scroll";
 import { useInViewHashUpdater } from "@/hooks/useInViewHashUpdater";
+import Image from "next/image";
+import profilePic from "../../public/me.png";
 
 function HomePageText({ children }: PropsWithChildren) {
   return <p className="my-2 py-2">{children}</p>;
@@ -10,9 +12,9 @@ function HomePageText({ children }: PropsWithChildren) {
 
 function HeroText() {
   return (
-    <div className="lg:w-1/2 p-6">
+    <div className="lg:w-2/3 lg:max-w-2xl p-6">
       <header className="">
-        <h1 className="text-5xl sm:text-6xl my-2">Denver McCarthy</h1>
+        <h1 className=" text-5xl sm:text-6xl my-2">Denver McCarthy</h1>
         <h2 className="text-lg sm:text-xl my-0">Full Stack Engineer</h2>
         <HomePageText>
           I&apos;m interested in designing and building robust, maintainable,
@@ -27,8 +29,17 @@ function HeroText() {
 
 function Hero() {
   return (
-    <div className="min-h-[80svh] flex justify-center items-center">
+    <div className="min-h-[80svh] w-full flex justify-center items-center gap-6">
       <HeroText />
+      <div className="hidden lg:max-w-xs lg:block">
+        <Image
+          alt="An image of me standing by a river"
+          src={profilePic}
+          objectFit="contain"
+          width={500}
+          className="rounded-xl"
+        />
+      </div>
     </div>
   );
 }
@@ -64,7 +75,7 @@ function Nav({
   activeSection: string;
 }) {
   return (
-    <div className="hidden py-24 w-full md:flex justify-center md:justify-normal lg:col-span-1 ">
+    <div className="hidden py-24 w-full xl:flex justify-center md:justify-normal lg:col-span-1 ">
       <nav>
         <ul className="md:sticky md:top-[33vh]">
           {sections.map((name) => (
